@@ -1,0 +1,50 @@
+.App {
+  text-align: center;
+
+}
+
+
+#flexbox{
+
+    width: 300px;
+    /* height: 600px; */
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 100px;
+    margin-left: 500px;
+
+
+}
+
+body{
+
+  position: fixed;
+  background-image: url("https://cdn1.parksmedia.wdprapps.disney.com/media/blog/wp-content/uploads/2019/02/iuwy48t9yuoh4-624x351.jpg")
+
+
+}
+
+#flexbox > div,button {
+  width: 80px;
+  height: 80px;
+  /* height: 100px; */
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+  border: 2px solid tan;
+
+}
+
+#reset{
+    margin-top: 20px;
+    width: 120px;
+    height: 70px;
+    text-align: center;
+    color: white;
+    background-color: rgba(0,0,0,0.5)
+
+}
+
+#box{
+
+}
