@@ -1,8 +1,9 @@
 import React,{Component} from 'react';
 import Square from './Square'
 import './App.css';
-
-
+import Logo from './logo.jpg'
+import Image from './image.png'
+import Images from './images.png'
 
 class Board extends Component {
     constructor(props){
@@ -37,6 +38,9 @@ class Board extends Component {
 
     boxClick=(index,turn,player1,player2)=>{
         let {winState} = this.state
+        if (! this.state.spaces.includes(null)) {
+            document.getElementById('label').innerHTML = 'Tie'
+        }
         if (turn === '1') {
             if (player1.includes(index) || player2.includes(index)) {
                 alert('Error')
@@ -53,7 +57,7 @@ class Board extends Component {
                     player1.push(index)
                     player1.sort()
                     if (winState.indexOf(player1.sort().join("")) != -1) {
-                        alert('Win')
+                        document.getElementById('label').innerHTML = 'O Wins'
 
                     }
                 }
@@ -74,17 +78,15 @@ class Board extends Component {
                     player2.push(index)
                     player2.sort()
                     if (winState.indexOf(player2.sort().join("")) != -1) {
-                        alert('Win')
-
+                        document.getElementById('label').innerHTML = 'X Wins'
                     }
                 }
                 this.setState({player2:player2,turn:'1'})
                 console.log("player2",player2);
 
             }
-        }else {
-
         }
+
 
     }
 
@@ -120,9 +122,10 @@ class Board extends Component {
     render(){
 
         return (
-            <div className="Board">
-
-                <div id="flexbox" >
+            <>
+            <img src = {Images} />
+            <div id = "label"> </div>
+                <div id="flexbox" width= "42" height= "42">
                     {this.state.spaces.map((value,index)=>{
                         return(
                             <div>
@@ -138,7 +141,7 @@ class Board extends Component {
                 </div>
                 <button id="reset" onClick= {this.restart} > Restart </button>
 
-            </div>
+            </>
         );
     }
 }
