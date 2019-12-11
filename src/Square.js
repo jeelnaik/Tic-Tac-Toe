@@ -13,13 +13,8 @@ class Square extends Component {
         }else if (this.props.turn === '2') {
             this.props.displayOn(this.props.index,'X')
         }
-
-        // if (this.props.start === false) {
-        //     this.props.displayOnBoard(true,'1')
-        // } else if (this.props.start === true) {
-            this.props.boxClick(this.props.index,this.props.turn,this.props.player1,this.props.player2);
-        // }
-
+        
+        this.props.boxClick(this.props.index,this.props.turn,this.props.player1,this.props.player2);
     }
 
     render(){

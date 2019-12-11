@@ -20,16 +20,8 @@ class Board extends Component {
         }
     }
 
-    displayOnBoard=(start,turn)=>{
-        // console.log("in board",index,value);
-        // const { spaces } = this.state
-        // spaces[index] = value
-        // this.setState({spaces:spaces})
-        this.setState({start:start,turn:'1'})
-    }
-
     displayOn=(index,value)=>{
-        // console.log("in board",index,value);
+        //setting the space variable to the values o or x
         const { spaces } = this.state
         spaces[index] = value
         this.setState({spaces:spaces})
@@ -42,20 +34,25 @@ class Board extends Component {
             document.getElementById('label').innerHTML = 'Tie'
         }
         if (turn === '1') {
+            //if the player has already clicked the index then display error message
             if (player1.includes(index) || player2.includes(index)) {
                 alert('Error')
             } else {
                 if (player1.length < 2) {
+                    // push the index in an array if box has less then 2 clicks
                     player1.push(index)
                 }else if (player1.length >= 3) {
                     console.log(">3");
                     this.winCondition(player1,index)
                     player1.push(index)
                 }else{
+                    // when 1 player clicks 3 boxes , check for the win condition
                     console.log(player1.sort().join(""),"win",winState)
+                    // check if the players 3 clicked indexes are in the win array
                     console.log("Win",winState.indexOf(player1.sort().join("")))
                     player1.push(index)
                     player1.sort()
+                    //display the o wins in the label id
                     if (winState.indexOf(player1.sort().join("")) != -1) {
                         document.getElementById('label').innerHTML = 'O Wins'
 
@@ -91,17 +88,20 @@ class Board extends Component {
     }
 
     winCondition = (array,index) => {
+        // when one player clicks the 4th index, check if one of the win condition is true.
+        // create variables through array and index
         let {winState} = this.state
         let win = []
         for (let i = 0; i < array.length; i++) {
-
             for (let j = i+1; j < array.length; j++) {
                 let win = []
+                //take 2 variables from array and push the 3rd variable in the vaiable win
                 win.push(array[i],array[j],index)
+                //sort the win
                 win = win.sort()
-                // win.concat(array[i]).concat(array[j]).concat(index)
                 console.log("winning",win.join(""));
                 console.log(winState.indexOf(win));
+                //check if the value of win is in the win condition array
                 if (winState.indexOf(win.join("")) != -1) {
                     alert('Win')
                     break
